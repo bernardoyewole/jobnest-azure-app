@@ -1,0 +1,159 @@
+﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    body {
+        font-family: "Montserrat", "sans-serif", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .jobs-container {
+        max-width: 800px;
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    .jobs-container h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .jobs-container p {
+        font-size: 17px;
+        margin-bottom: 30px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Style for table header */
+    .table th {
+        background-color: #f2f2f2;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        border-bottom: none;
+    }
+
+    /* Style for table body */
+    .table td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        line-height: 2;
+    }
+
+    /* Alternate row color */
+    .table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .apply-btn {
+        background-color: #4CAF50;
+    }
+
+    .apply-btn,
+    .applied-btn{
+        display: inline-block;
+        color: white;
+        width: 90px;
+        padding: 4px 0px;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        outline: none;
+        transition: 0.2s ease-in-out;
+    }
+
+    .applied-btn {
+        background-color: purple;
+    }
+
+    /* Hover effect */
+    .apply-btn:hover {
+        background-color: #45a049;
+    }
+
+    .applied-btn:hover {
+        cursor: not-allowed;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        loadData();
+    })
+
+    function loadData() {
+        // var UserId = $('#userId').val(); // this element holds the user ID
+
+        $.ajax({
+            url: "/Application/GetJobs",
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (response) {
+                var row = '';
+                var UserId = $('#userId').val();
+                $.each(response, (key, item) => {
+                    row += '<tr>'
+                    row += '<td>' + item.position + '</td>';
+                    row += '<td>' + item.companyName + '</td>';
+                    row += '<td>' + item.salary + '</td>';
+                    row += '<td>' + item.startingDate.split('T')[0] + '</td>';
+                    row += '<td>' + item.location + '</td>';
+                    // Check if the current user has applied for this job
+                    var applied = item.applications.some(function (application) {
+                        return application.userId === UserId;
+                    });
+
+                    if (applied) {
+                        row += '<td><button disabled class="applied-btn">Applied</button></td>';
+                    } else {
+                        row += '<td><button onclick ="applyForJob(' + item.jobId + ')" class="apply-btn">Apply</button></td>';
+                    }
+                    row += '</tr>';
+                });
+                $('.tbody').html(row);
+            },
+            error: function (errormessage) {
+                console.log(errormessage.responseText)
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function applyForJob(jobId) {
+        window.location.href = "/Application/CreateApplication?jobId=" + jobId;
+    }
+</script>
+
+<div class="jobs-container">
+    <h1>Explore Exciting Job Opportunities</h1>
+    <p>Discover a wide range of job listings from top companies across various industries. Your next career move could be just a click away!</p>
+</div>
+
+<table class="table">
+    <input type="hidden" id="userId" value="@TempData["UserId"]" />
+
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Company</th>
+            <th>Salary</th>
+            <th>Starting Date</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+        <!-- Table body content -->
+    </tbody>
+</table>
