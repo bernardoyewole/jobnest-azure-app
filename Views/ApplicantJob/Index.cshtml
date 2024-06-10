@@ -1,4 +1,4 @@
-﻿@model List<Entities.ViewModel.ApplicantJobVM>
+﻿@* @model List<Entities.ViewModel.ApplicantJobVM>
 
 <!DOCTYPE html>
 <html>
@@ -49,6 +49,110 @@
         .job-table td {
             color: #666;
         }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="emp-container">
+        <h1>Welcome to the Job Portal</h1>
+        <p>Below is a list of applicants and the jobs they've applied to</p>
+
+        <table class="job-table">
+            <thead>
+                <tr>
+                    <th>Applicant Username</th>
+                    <th>Company</th>
+                    <th>Job Position</th>
+                    <th>Location</th>
+                    <th>Salary</th>
+                    <th>Starting Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var applicant in Model)
+                {
+                    <tr>
+                        <td colspan="6" style="font-size: 18px; font-weight: bold;">@applicant.ApplicantName</td>
+                    </tr>
+                    @foreach (var application in applicant.AppliedJobs)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@application.Job.CompanyName</td>
+                            <td>@application.Job.Position</td>
+                            <td>@application.Job.Location</td>
+                            <td>$@application.Job.Salary</td>
+                            <td>@application.Job.StartingDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> *@
+@model List<Entities.ViewModel.ApplicantJobVM>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Portal</title>
+    <style>
+        body {
+            font-family: "Montserrat", "sans-serif", Arial, sans-serif !important;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .emp-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            .job-table th, .job-table td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .job-table th {
+                background-color: #ffe8ff;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .job-table td:first-child {
+                font-size: 16px !important;
+                width: 200px;
+                font-weight: bold;
+                color: #9a009a !important;
+            }
+
+            .job-table td {
+                color: #666;
+            }
 
         h1 {
             text-align: center;

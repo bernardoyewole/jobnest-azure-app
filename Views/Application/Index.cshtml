@@ -1,4 +1,4 @@
-﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+﻿@* <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -166,4 +166,199 @@
     </tbody>
 </table>
 
-    
+     *@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    body {
+        font-family: "Montserrat", "sans-serif", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #262433;
+        background-color: #FDFDFD;
+        height: 100vh;
+    }
+
+    main {
+        width: min(100% - 30px, 1280px);
+        margin-inline: auto;
+        padding: 85px 0px 40px 0px;
+        min-height: calc(100% - 80px - 300px);
+    }
+
+    .my-container {
+        width: min(100% - 30px, 1280px);
+        margin-inline: auto;
+        padding: 0;
+    }
+
+    footer {
+        padding: 80px 0px 40px 0px;
+        margin-top: 45px;
+        height: 307px;
+    }
+
+    .applications-container {
+        text-align: center;
+    }
+
+        .applications-container h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .applications-container p {
+            font-size: 17px;
+            text-align: center;
+        }
+
+            .applications-container p:last-of-type {
+                margin-bottom: 30px;
+            }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .delete-btn {
+        padding: 12px 24px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        loadData();
+    })
+
+    function loadData() {
+        GetAllJobs().then(function (jobs) {
+            $.ajax({
+                url: "/Application/GetApplications",
+                type: "GET",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+
+                    UpdateDisplay(response.length);
+
+                    var row = '';
+                    $.each(response, function (key, item) {
+                        // get the corresponding job based on jobId
+                        var appliedJob = jobs.find(function (job) {
+                            return job.jobId == item.jobId;
+                        });
+
+                        // append job and application information
+                        row += '<tr>'
+                        row += '<td>' + (appliedJob ? appliedJob.position : '') + '</td>';
+                        row += '<td>' + (appliedJob ? appliedJob.companyName : '') + '</td>';
+                        row += '<td>' + item.applicationReason + '</td>';
+                        row += '<td>' + item.applicationDate.split('T')[0] + '</td>';
+                        row += '<td><button onclick ="DeleteApplication(' + item.applicationId + ')" class="delete-btn">Withdraw</button></td>';
+                        row += '</tr>';
+                    });
+                    $('.tbody').html(row);
+                },
+                error: function (errormessage) {
+                    console.log(errormessage.responseText)
+                    alert(errormessage.responseText);
+                }
+            });
+        }).catch(function (error) {
+            console.error("Error fetching jobs:", error);
+        });
+    }
+
+
+    function GetAllJobs() {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: "/Application/GetJobs",
+                type: "GET",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (response) {
+                    resolve(response); // Resolve the promise with the response data
+                },
+                error: function (xhr, status, error) {
+                    reject(error); // Reject the promise with the error
+                }
+            });
+        });
+    }
+
+    function UpdateDisplay(len) {
+        var table = document.querySelector("table");
+        if (len < 1) {
+            table.innerHTML = '';
+            table.innerText = "You have no applications";
+            table.classList.add("info");
+        } else {
+            table.classList.remove("info");
+        }
+    }
+
+    function DeleteApplication(applicationId) {
+        var ans = confirm('Are you sure you want to withdraw this application?');
+
+        if (ans) {
+            $.ajax({
+                url: `/Application/DeleteApplication?applicationId=${applicationId}`,
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                success: (response) => {
+                    loadData();
+                },
+                error: (errormessage) => {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+</script>
+
+<div class="my-container">
+    <div class="applications-container">
+        <h1>Manage Your Job Applications</h1>
+        <p>View the status of your applications and stay organized throughout your job search journey.</p>
+        <p>Keep track of your job applications in one convenient location.</p>
+    </div>
+
+    <table class="container">
+        <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Application Reason</th>
+            <th>Application Date</th>
+            <th>Action</th>
+        </tr>
+        <tbody class="tbody">
+        </tbody>
+    </table>
+</div>
+
