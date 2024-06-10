@@ -1,4 +1,4 @@
-﻿@model List<Entities.ViewModel.EmployerJobVM>
+﻿@* @model List<Entities.ViewModel.EmployerJobVM>
 
 <!DOCTYPE html>
 <html>
@@ -72,6 +72,108 @@
             <thead>
                 <tr>
                     <th>Employer Id</th>
+                    <th>Job Position</th>
+                    <th>Location</th>
+                    <th>Salary</th>
+                    <th>Starting Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var employer in Model)
+                {
+                    <tr>
+                        <td colspan="5" style="font-size: 18px; font-weight: bold;">@employer.EmployerName</td>
+                    </tr>
+                    @foreach (var job in employer.Jobs)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@job.Position</td>
+                            <td>@job.Location</td>
+                            <td>$@job.Salary</td>
+                            <td>@job.StartingDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> *@
+@model List<Entities.ViewModel.EmployerJobVM>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Portal</title>
+    <style>
+        body {
+            font-family: "Montserrat", "sans-serif", Arial, sans-serif !important;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .emp-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+            .job-table th, .job-table td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .job-table th {
+                background-color: #ffe8ff;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .job-table td:first-child {
+                font-size: 16px !important;
+                width: 200px;
+                font-weight: bold;
+                color: #9a009a !important;
+            }
+
+            .job-table td {
+                color: #666;
+            }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="emp-container">
+        <h1>Welcome to the Job Portal</h1>
+        <p>Below is a list of employers and the jobs they've posted:</p>
+
+        <table class="job-table">
+            <thead>
+                <tr>
+                    <th>Employer Username</th>
                     <th>Job Position</th>
                     <th>Location</th>
                     <th>Salary</th>

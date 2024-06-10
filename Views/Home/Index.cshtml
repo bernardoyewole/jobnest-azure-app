@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿@* <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -52,5 +52,594 @@
         <a asp-controller="Application" asp-action="Jobs">Job Listings</a>
         <a asp-controller="Application" asp-action="Index">My Applications</a>
     </div>
+</body>
+</html> *@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobNest</title>
+    <link href="~/Style/Index.css?t=<%= DateTime.Now.Ticks %" rel="stylesheet" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section class="my-container">
+        <div class="hero-banner">
+            <div class="award">
+                <span>
+                    <i class="fa-solid fa-medal"></i>
+                </span>
+                <p>No. 1 Job Hunt Website</p>
+            </div>
+            <h1 class="hero-title">
+                Search, Apply &
+            </h1>
+            <h1 class="hero-title">
+                Get Your <span class="hero-color-title">Dream Job</span>
+            </h1>
+            <p class="hero-description">
+                Start your hunt for the best, life-changing career opportunities from here in your
+            </p>
+            <p class="hero-description">
+                selected areas conveniently and get hired quickly
+            </p>
+            @if (User.IsInRole("Applicant"))
+            {
+                <a class="hero-button" asp-area="" asp-controller="Application" asp-action="Jobs">Browse Jobs</a>
+
+            }
+            else if (User.IsInRole("Employer"))
+            {
+                <a class="hero-button" asp-area="" asp-controller="Job" asp-action="Index">Browse Jobs</a>
+            }
+            else
+            {
+                <a class="hero-button">Browse Jobs</a>
+            }
+        </div>
+    </section>
+    <section>
+        <div class="slider">
+            <div class="slide-track">
+                <div class="slide">
+                    <p>Software Engineer</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Data Scientist</p>
+                </div>
+                <div class="slide">
+                    <p>Product Manager</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>UI/UX Designer</p>
+                </div>
+                <div class="slide">
+                    <p>System Administrator</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Network Engineer</p>
+                </div>
+                <div class="slide">
+                    <p>Graphic Designer</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>DevOps Engineer</p>
+                </div>
+                <div class="slide">
+                    <p>Technical Support</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>IT Security Analyst</p>
+                </div>
+                <div class="slide">
+                    <p>Software Engineer</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Data Scientist</p>
+                </div>
+                <div class="slide">
+                    <p>Product Manager</p>
+                </div>
+                <div class="slide">
+                    <p>UI/UX Designer</p>
+                </div>
+                <div class="slide">
+                    <p>System Administrator</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Network Engineer</p>
+                </div>
+                <div class="slide">
+                    <p>Quality Assurance Engineer</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>DevOps Engineer</p>
+                </div>
+                <div class="slide">
+                    <p>Technical Support Specialist</p>
+                </div>
+                <div class="slide">
+                    <p>IT Security Analyst</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="slider-container">
+        <div class="slider">
+            <div class="slide-track">
+                <div class="slide">
+                    <p>Software Tester</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Project Manager</p>
+                </div>
+                <div class="slide">
+                    <p>Business Analyst</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Technical Writer</p>
+                </div>
+                <div class="slide">
+                    <p>Sales Engineer</p>
+                </div>
+                <div class="slide">
+                    <p>Solution Architect</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Scrum Master</p>
+                </div>
+                <div class="slide">
+                    <p>AI/ML Engineer</p>
+                </div>
+                <div class="slide">
+                    <p>Cloud Architect</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Mobile App Developer</p>
+                </div>
+                <div class="slide">
+                    <p>Database Administrator</p>
+                </div>
+                <div class="slide">
+                    <p>Project Manager</p>
+                </div>
+                <div class="slide">
+                    <p>Business Analyst</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Technical Writer</p>
+                </div>
+                <div class="slide">
+                    <p>Sales Engineer</p>
+                </div>
+                <div class="slide">
+                    <p>Solution Architect</p>
+                </div>
+                <div class="slide">
+                    <p>Scrum Master</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>AI/ML Engineer</p>
+                </div>
+                <div class="slide">
+                    <p>Cloud Architect</p>
+                </div>
+                <div class="slide slide-purple">
+                    <p>Mobile App Developer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="get-hired">
+        <div class="my-container">
+            <div class="instructions-header">
+                <h2>Get Hired in <span>4 Quick Easy Steps</span></h2>
+                <p>The quickest and most effective way to get hired by the top firm working in your</p>
+                <p>career interest areas</p>
+            </div>
+            <div class="steps-container">
+                <div class="step step-one">
+                    <div class="icon-box user-icon-box">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h3>Create an Account</h3>
+                    <p>
+                        Signup for the job applicant profile, mention your qualifications, past experiences,
+                        and expertise, and scope your interests. Voila! You're all set to find your dream jobs.
+                    </p>
+                </div>
+                <div class="step step-two">
+                    <div class="icon-box job-icon-box">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <h3>Search Job</h3>
+                    <p>
+                        Once you set your job hunting parameters, you'll find many openings related to your career
+                        interest on the home page and even filter out some of the best job openings.
+                    </p>
+                </div>
+                <div class="step step-three">
+                    <div class="icon-box resume-icon-box">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <h3>Upload CV/Resume</h3>
+                    <p>
+                        From numerous job openings, shortlist the right-match vacancy to your profile and apply right
+                        after by uploading your CV/ Resume and answering a couple of questions, if any.
+                    </p>
+                </div>
+                <div class="step step-four">
+                    <div class="icon-box get-job-icon-box">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3>Get Job</h3>
+                    <p>
+                        After applying, wait for some time, schedule an interview, and when everything goes right, you
+                        get hired faster than traditional hiring methods.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="career-option-sec">
+        <div class="my-container">
+            <div class="career-option-head">
+                <h2>
+                    <span>Countless Career Options</span> Are Waiting
+                </h2>
+                <h2>For You to Explore</h2>
+            </div>
+            <div class="career-options-container first-career-option">
+                <div class="career-option">
+                    <div class="career-option-content">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <div>
+                            <h3>Marketing &</h3>
+                            <h3>Communication</h3>
+                        </div>
+                    </div>
+                    <p>58 Jobs Available</p>
+                </div>
+                <div class="career-option">
+                    <div class="career-option-content">
+                        <i class="fa-solid fa-bezier-curve"></i>
+                        <div>
+                            <h3>Design &</h3>
+                            <h3>Development</h3>
+                        </div>
+                    </div>
+                    <p>120 Jobs Available</p>
+                </div>
+                <div class="career-option">
+                    <div class="career-option-content">
+                        <i class="fa-solid fa-user-gear"></i>
+                        <div>
+                            <h3>Human Research &</h3>
+                            <h3>Development</h3>
+                        </div>
+                    </div>
+                    <p>199 Jobs Available</p>
+                </div>
+                <div class="career-option">
+                    <div class="career-option-content">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        <div>
+                            <h3>Finance</h3>
+                            <h3>Management</h3>
+                        </div>
+                    </div>
+                    <p>237 Jobs Available</p>
+                </div>
+            </div>
+            <div class="career-options-container">
+                <div class="career-option">
+                    <div class="career-option-content">
+                        <i class="fa-solid fa-user-secret"></i>
+                        <div>
+                            <h3>Armforce</h3>
+                            <h3>Guide & Security</h3>
+                        </div>
+                    </div>
+                    <p>120 Jobs Available</p>
+                </div>
+                <div class="career-option">
+                    <div class="career-option-content">
+                        <i class="fa-regular fa-handshake"></i>
+                        <div>
+                            <h3>Business &</h3>
+                            <h3>Consulting</h3>
+                        </div>
+                    </div>
+                    <p>47 Jobs Available</p>
+                </div>
+                <div class="career-option">
+                    <div class="career-option-content">
+                        <i class="fa-solid fa-headphones-simple"></i>
+                        <div>
+                            <h3>Customer</h3>
+                            <h3>Support Care</h3>
+                        </div>
+                    </div>
+                    <p>20 Jobs Available</p>
+                </div>
+                <div class="career-option">
+                    <div class="career-option-content">
+                        <i class="fa-solid fa-folder-tree"></i>
+                        <div>
+                            <h3>Project</h3>
+                            <h3>Management</h3>
+                        </div>
+                    </div>
+                    <p>87 Jobs Available</p>
+                </div>
+            </div>
+            <div class="category-btn-container">
+                <a class="all-categories">View All Categories</a>
+            </div>
+        </div>
+    </section>
+    <section class="featured-jobs-sect">
+        <h2><span>Featured </span>Job Circulars</h2>
+        <div class="my-container jobs-flex">
+            <div class="job-container">
+                <div class="company">
+                    <div class="company-logo">
+                        <img src="~/img/icons8-microsoft-48.png" />
+                    </div>
+                    <div>
+                        <p class="company-name">Microsoft</p>
+                        <p class="company-location">New York, USA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Visual Designer</h3>
+                    <p class="job-type">Full-time</p>
+                    <p class="job-description">You will be expected to lead the company's entire UI strategy.</p>
+                </div>
+                <div class="job-last-child">
+                    <p class="job-pay"><span class="pay-amount">$4500</span>/month</p>
+                    <a class="apply-now">Apply Now</a>
+                </div>
+            </div>
+            <div class="job-container">
+                <div class="company">
+                    <div class="company-logo">
+                        <img src="~/img/icons8-amazon-48.png" />
+                    </div>
+                    <div>
+                        <p class="company-name">Amazon</p>
+                        <p class="company-location">Atlanta, USA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Software Developer</h3>
+                    <p class="job-type">Full-time</p>
+                    <p class="job-description">Design and code websites to meet client specifications.</p>
+                </div>
+                <div class="job-last-child">
+                    <p class="job-pay"><span class="pay-amount">$3500</span>/month</p>
+                    <a class="apply-now">Apply Now</a>
+                </div>
+            </div>
+            <div class="job-container">
+                <div class="company">
+                    <div class="company-logo">
+                        <img src="~/img/icons8-paypal-app-94.png" />
+                    </div>
+                    <div>
+                        <p class="company-name">PayPal</p>
+                        <p class="company-location">Toronto, CA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Data Analyst</h3>
+                    <p class="job-type">Part-time</p>
+                    <p class="job-description">Analyze data to identify business trends.</p>
+                </div>
+                <div class="job-last-child">
+                    <p class="job-pay"><span class="pay-amount">$6000</span>/month</p>
+                    <a class="apply-now">Apply Now</a>
+                </div>
+            </div>
+            <div class="job-container">
+                <div class="company">
+                    <div class="company-logo">
+                        <img src="~/img/icons8-behance-48.png" />
+                    </div>
+                    <div>
+                        <p class="company-name">Beehance</p>
+                        <p class="company-location">Ottawa, CA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Project Manager</h3>
+                    <p class="job-type">Contract</p>
+                    <p class="job-description">Oversee projects, set deadlines, and track progress.</p>
+                </div>
+                <div class="job-last-child">
+                    <p class="job-pay"><span class="pay-amount">$6000</span>/month</p>
+                    <a class="apply-now">Apply Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="my-container jobs-flex">
+            <div class="job-container">
+                <div class="company">
+                    <div class="company-logo">
+                        <img src="~/img/icons8-discord-48.png" />
+                    </div>
+                    <div>
+                        <p class="company-name">Discord</p>
+                        <p class="company-location">Minneapolis, USA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Marketing Specialist</h3>
+                    <p class="job-type">Full-time</p>
+                    <p class="job-description">Develop and track marketing programs and campaigns.</p>
+                </div>
+                <div class="job-last-child">
+                    <p class="job-pay"><span class="pay-amount">$7000</span>/month</p>
+                    <a class="apply-now">Apply Now</a>
+                </div>
+            </div>
+            <div class="job-container">
+                <div class="company">
+                    <div class="company-logo">
+                        <img src="~/img/icons8-uber-eats-app-48.png" />
+                    </div>
+                    <div>
+                        <p class="company-name">UberEats</p>
+                        <p class="company-location">Chicago, USA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>IT Support Technician</h3>
+                    <p class="job-type">Full-time</p>
+                    <p class="job-description">Provide tech support and maintain company networks.</p>
+                </div>
+                <div class="job-last-child">
+                    <p class="job-pay"><span class="pay-amount">$4700</span>/month</p>
+                    <a class="apply-now">Apply Now</a>
+                </div>
+            </div>
+            <div class="job-container">
+                <div class="company">
+                    <div class="company-logo">
+                        <img src="~/img/icons8-mail-48.png" />
+                    </div>
+                    <div>
+                        <p class="company-name">DailyMail</p>
+                        <p class="company-location">Washington, USA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>UX Researcher</h3>
+                    <p class="job-type">Full-time</p>
+                    <p class="job-description">Conduct user research and usability testing.</p>
+                </div>
+                <div class="job-last-child">
+                    <p class="job-pay"><span class="pay-amount">$3800</span>/month</p>
+                    <a class="apply-now">Apply Now</a>
+                </div>
+            </div>
+            <div class="job-container">
+                <div class="company">
+                    <div class="company-logo">
+                        <img src="~/img/icons8-netflix-48.png" />
+                    </div>
+                    <div>
+                        <p class="company-name">Netflix</p>
+                        <p class="company-location">Winnipeg, CA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3>Content Writer</h3>
+                    <p class="job-type">Freelance</p>
+                    <p class="job-description">Edit and create content for digital platforms.</p>
+                </div>
+                <div class="job-last-child">
+                    <p class="job-pay"><span class="pay-amount">$6500</span>/month</p>
+                    <a class="apply-now">Apply Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="more-jobs-container">
+            <a class="more-jobs-btn">Find More Jobs</a>
+        </div>
+    </section>
+    <section>
+        <div class="my-container reviews">
+            <h2><span>Reviews</span> of People Who Have</h2>
+            <h2>Found Jobs Through Jobnest</h2>
+            <div class="review-container">
+                <p class="review-paragraph">
+                    "This website was a game-changer for my job search. The personalized job recommendations were spot-on,
+                    and I found my dream job in less than a month. Highly recommend it to anyone looking for a seamless
+                    job-hunting experience!"
+                </p>
+                <p class="reviewer-name">Wade Warren</p>
+                <p class="reviewer-job">Software Engineer at Etsy</p>
+            </div>
+            <div class="reviewers">
+                <div>
+                    <a>
+                        <img src="~/img/brad.jpg" />
+                    </a>
+                </div>
+                <div>
+                    <a>
+                        <img src="~/img/vicky.jpg" />
+                    </a>
+                </div>
+                <div class="current-reviewer">
+                    <a>
+                        <img src="~/img/user-3.jpg" />
+                    </a>
+                </div>
+                <div>
+                    <a>
+                        <img src="~/img/user-4.jpg" />
+                    </a>
+                </div>
+                <div>
+                    <a>
+                        <img src="~/img/user-5.jpg" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="resume-section">
+        <div class="my-container resume-flex">
+            <div class="guy-container">
+                <img src="~/img/guy-thumbs-up.png" />
+            </div>
+            <div class="resume-content">
+                <h2>
+                    Get Matched The Most Valuable Jobs, Just <span>Drop Your CV</span> at Jobnest
+                </h2>
+                <p>
+                    In the subject line of your email, write your name, the description of the
+                    position and its reference number. If you did not find the vacancy on the
+                    employer's website, it's helpful to state where you found it.
+                </p>
+                <a class="upload-resume">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                    <span>Upload Resume</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="sponsors-section">
+        <div class="sponsors-content my-container">
+            <h3>More than <span>20,000 companies</span> partner with us</h3>
+            <div class="sponsors-one">
+                <img src="~/img/airbnb.png" />
+                <img src="~/img/shipbob.png" />
+                <img src="~/img/discover.png" />
+                <img src="~/img/walmart.png" />
+                <img src="~/img/capital-one.png" />
+            </div>
+            <div class="sponsors-two">
+                <img src="~/img/dropbox.png" />
+                <img src="~/img/slack.png" />
+                <img src="~/img/discord.png" />
+                <img src="~/img/dribbble.png" />
+            </div>
+        </div>
+    </section>
+    <section class="subscribe-section">
+        <div class="my-container subscribe-content">
+            <h2>
+                Never Want to Miss <span>Any Job News?</span>
+            </h2>
+            <div class="input-container">
+                <input type="text" placeholder="Enter your address" />
+                <a class="subscribe-btn">Subscribe</a>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
