@@ -1,0 +1,31 @@
+﻿@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border-style: none;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+html, body {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat", "sans-serif", Arial, sans-serif !important;
+    line-height: 1.4;
+    color: #2a2a2a;
+}
+
+h1, h2, h3, h4 {
+    text-wrap: balance;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}

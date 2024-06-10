@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/JobNest.styles.css" asp-append-version="true" />
+    <script>
+        window.addEventListener('beforeunload', function (e) {
+            // Send AJAX request to invalidate user session
+            fetch('/Account/Logout', {
+                method: 'POST',
+                credentials: 'same-origin' // Include cookies in the request
+            });
+        });
+    </script>
     <style>
         .title {
             font-size: 26px;
