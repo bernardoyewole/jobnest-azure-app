@@ -3,90 +3,100 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - JobNest</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/JobNest.styles.css" asp-append-version="true" />
-    <script>
-        window.addEventListener('beforeunload', function (e) {
-            // Send AJAX request to invalidate user session
-            fetch('/Account/Logout', {
-                method: 'POST',
-                credentials: 'same-origin' // Include cookies in the request
-            });
-        });
-    </script>
-    <style>
-        .title {
-            font-size: 26px;
-            color: purple !important;
-            font-weight: 600;
-            margin-right: 50px;
-        }
+    <title>@ViewData["Title"] JobNest</title>
+    <link href="~/Style/Index.css?t=<%= DateTime.Now.Ticks %" rel="stylesheet" type="text/css" asp-append-version="true" />
 
-        body {
-            font-family: "Montserrat", "sans-serif", Arial, sans-serif !important;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/style/index.css">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="padding-top: .8rem; padding-bottom: .8rem">
-            <div class="container-fluid" style="width: 86%">
-                <a class="navbar-brand title" asp-area="" asp-controller="Home" asp-action="Index">Jobnest</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1" style="gap: 10px">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <nav class="my-container">
+            <div class="header-links">
+                <ul class="links-group-one">
+                    <li>
+                        <a class="jobnest" asp-area="" asp-controller="Home" asp-action="Index">
+                            <span class="title-one">Job</span><span class="title-two">nest</span>
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="EmployerJob" asp-action="Index">Employers & Jobs</a>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="ApplicantJob" asp-action="Index">Applicants & Jobs</a>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">About Us</a>
                     </li>
-                    </ul>
-                    <ul class="navbar-nav flex-grow-1" style="gap: 10px">
-                        @if (User.IsInRole("Applicant"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Jobs">Job Listings</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Index">My Applications</a>
-                            </li>
-                            
-                        }
-                        else if (User.IsInRole("Employer"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Job" asp-action="Index">Manage Jobs</a>
-                            </li>
-                        }
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+                    <li>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Contact Us</a>
+                    </li>
+                    @if (User.IsInRole("Applicant"))
+                    {
+                        <li>
+                            <a asp-area="" asp-controller="Application" asp-action="Jobs">Job Listings</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Index">My Applications</a>
+                        </li>
+
+                    }
+                    else if (User.IsInRole("Employer"))
+                    {
+                        <li>
+                            <a asp-area="" asp-controller="Job" asp-action="Index">Manage Jobs</a>
+                        </li>
+                    }
+                </ul>
+                <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+    <div>
+        <main role="main" ">
+        @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - JobNest - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer>
+        <div class="my-container footer-section">
+            <nav class="footer-title">
+                <a>Job<span>nest</span></a>
+                <p>&copy;Jobnest 2024. All rights reserved</p>
+            </nav>
+            <nav>
+                <ul>
+                    <li><a>About</a></li>
+                    <li><a>Press</a></li>
+                    <li><a>Partner Relations</a></li>
+                    <li><a>Blog</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul>
+                    <li><a>Jobs</a></li>
+                    <li><a>Job Referrals</a></li>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Help</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul>
+                    <li><a>Careers</a></li>
+                    <li><a>Blog</a></li>
+                    <li><a>Help and Support</a></li>
+                    <li><a>Affiliate</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul>
+                    <li><a>Terms</a></li>
+                    <li><a>Privacy Policy</a></li>
+                </ul>
+            </nav>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+            @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

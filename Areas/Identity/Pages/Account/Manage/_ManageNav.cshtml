@@ -1,4 +1,53 @@
-﻿@using JobNest.Data
+﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+ <style>
+    main {
+        width: min(100% - 30px, 1280px);
+        margin-inline: auto;
+        padding: 40px 0px;
+    }
+
+    body {
+        font-family: "Montserrat", "sans-serif", Arial, sans-serif;
+        color: #262433;
+        background-color: #FDFDFD;
+    }
+
+    .my-container {
+        width: min(100% - 30px, 1280px);
+        margin-inline: auto;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    header a {
+        text-decoration: none;
+        color: #252532;
+        font-size: 14px;
+        padding: 0 !important;
+    }
+
+    header a:hover {
+        color: #252532 !important;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    footer {
+        padding: 60px 0px 40px 0px;
+    }
+
+    .logout {
+        line-height: normal;
+    }
+</style>
+
+@using JobNest.Data
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
@@ -14,3 +63,6 @@
     <li class="nav-item"><a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">Personal data</a></li>
 </ul>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
