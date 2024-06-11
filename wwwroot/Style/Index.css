@@ -213,7 +213,7 @@ header a {
     content: "";
     height: 100px;
     position: absolute;
-    width: 200px;
+    width: 100px;
     z-index: 2;
 }
 
@@ -241,13 +241,11 @@ header a {
     border: 1px solid #a8a8a8;
     display: grid;
     place-items: center;
-/*    width: 200px;
-*/}
+}
 
 .slide p {
     padding: 10px 20px;
-/*    width: 200px;
-*/    text-align: center;
+    text-align: center;
     font-size: 12px;
     font-weight: 600;
 }
@@ -265,6 +263,7 @@ header a {
 .instructions-header {
     display: grid;
     place-items: center;
+    text-align: center;
 }
 
 .instructions-header h2 {
@@ -288,10 +287,12 @@ header a {
 }
 
 .steps-container {
-    display: flex;
+display: flex;
     gap: 20px;
     margin-top: 40px;
     padding-bottom: 110px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .step-two, .step-four {
@@ -302,7 +303,9 @@ header a {
     background-color: #fff;
     padding: 30px;
     border-radius: 6px;
-    width: calc(100% / 4);
+    width: calc(100% / 4 - 20px);
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .step h3 {
@@ -383,7 +386,7 @@ header a {
     margin: 5px 0px 40px 0px;
 }
 
-.career-options-container {
+/*.career-options-container {
     display: flex;
     gap: 30px;
 }
@@ -398,6 +401,25 @@ header a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}*/
+.career-options-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.career-option {
+    border: 1px solid #ededed;
+    box-shadow: 0 0 16px 5px rgba(237, 237, 237, 0.49);
+    border-radius: 10px;
+    width: calc(100% / 4 - 30px);
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .career-option-content {
@@ -895,4 +917,138 @@ footer a:not(.jobnest) {
     font-size: 13px;
     font-weight: 500;
     color: #777777;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 50px;
+    }
+
+    .hero-description {
+        font-size: 12px;
+    }
+
+    .hero-button {
+        padding: 16px 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 40px;
+    }
+
+    .hero-description {
+        font-size: 11px;
+    }
+
+    .hero-button {
+        padding: 14px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 40px;
+    }
+
+    .hero-description {
+        font-size: 10px;
+    }
+
+    .hero-button {
+        padding: 12px 20px;
+    }
+}
+
+/*get job*/
+@media (max-width: 1024px) {
+    .instructions-header h2 {
+        font-size: 30px;
+    }
+
+    .instructions-header p {
+        font-size: 12px;
+    }
+
+    .step {
+        width: calc(100% / 2 - 20px);
+        transform: none;
+    }
+}
+
+@media (max-width: 868px) {
+    .instructions-header h2 {
+        font-size: 25px;
+    }
+
+    .instructions-header p {
+        font-size: 11px;
+    }
+
+    .step {
+        width: 100%;
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .instructions-header h2 {
+        font-size: 20px;
+    }
+
+    .instructions-header p {
+        font-size: 10px;
+    }
+
+    .step {
+        width: 100%;
+        transform: none;
+    }
+}
+
+/*career option*/
+@media (max-width: 1024px) {
+    .career-option-head h2 {
+        font-size: 30px;
+    }
+
+    .career-option-head p {
+        font-size: 12px;
+    }
+
+    .career-option {
+        width: calc(100% / 2 - 30px);
+    }
+}
+
+@media (max-width: 768px) {
+    .career-option-head h2 {
+        font-size: 25px;
+    }
+
+    .career-option-head p {
+        font-size: 11px;
+    }
+
+    .career-option {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .career-option-head h2 {
+        font-size: 20px;
+    }
+
+    .career-option-head p {
+        font-size: 10px;
+    }
+
+    .career-option {
+        height: auto;
+        padding: 20px;
+    }
 }
