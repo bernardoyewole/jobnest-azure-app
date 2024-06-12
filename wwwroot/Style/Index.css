@@ -568,8 +568,7 @@ display: flex;
 .company-logo img {
     height: 35px;
     width: 35px;
-/*    border-radius: 4px;
-*/}
+}
 
 .company-name {
     font-weight: 600;
@@ -585,8 +584,7 @@ display: flex;
 }
 
 .job-container h3 {
-/*    font-weight: 700;*/
-margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .job-type {
@@ -1023,9 +1021,9 @@ footer a:not(.jobnest) {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 668px) {
     .career-option-head h2 {
-        font-size: 25px;
+        font-size: 22px;
     }
 
     .career-option-head p {
@@ -1034,11 +1032,19 @@ footer a:not(.jobnest) {
 
     .career-option {
         width: 100%;
-        margin-bottom: 20px;
+        padding-left:30px
+    }
+
+    .career-option-content {
+        /*gap: 30px;*/
     }
 }
 
 @media (max-width: 480px) {
+    .career-options-container {
+        gap: 20px
+    }
+
     .career-option-head h2 {
         font-size: 20px;
     }
@@ -1050,5 +1056,81 @@ footer a:not(.jobnest) {
     .career-option {
         height: auto;
         padding: 20px;
+    }
+
+    .career-option-content {
+        gap: 22px;
+    }
+}
+
+/* featured */
+@media (max-width: 1224px) {
+    .jobs-flex {
+        flex-wrap: wrap;
+    }
+
+    .job-container {
+        width: calc(100% / 2 - 15px);
+        height: auto;
+    }
+
+    .featured-jobs-sect h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .job-container {
+        width: 100%;
+        height: auto;
+        padding: 30px;
+    }
+
+    .featured-jobs-sect h2 {
+        font-size: 24px;
+    }
+
+    .pay-amount {
+        font-size: 16px;
+    }
+
+    .apply-now {
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-jobs-sect {
+        padding: 50px 0px 50px 0px;
+    }
+
+    .featured-jobs-sect h2 {
+        font-size: 20px;
+    }
+
+    .company-logo {
+        height: 30px;
+        width: 30px;
+    }
+
+    .company-logo img {
+        height: 25px;
+        width: 25px;
+    }
+
+    .company-name {
+        font-size: 15px;
+    }
+
+    .company-location {
+        font-size: 10px;
+    }
+
+    .pay-amount {
+        font-size: 14px;
+    }
+
+    .apply-now {
+        padding: 6px 12px;
     }
 }
