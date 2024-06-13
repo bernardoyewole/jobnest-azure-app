@@ -16,6 +16,11 @@
     <header>
         <nav class="my-container">
             <div class="header-links">
+                @* <div class="menu-toggle" id="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div> *@
                 <ul class="links-group-one">
                     <li>
                         <a class="jobnest" asp-area="" asp-controller="Home" asp-action="Index">
@@ -97,6 +102,11 @@
         </div>
     </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
+@*     <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.querySelector('.header-links').classList.toggle('menu-open');
+        });
+    </script> *@
             @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
