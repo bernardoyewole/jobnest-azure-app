@@ -10,50 +10,46 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="./assets/style/index.css">
 </head>
 <body>
     <header>
         <nav class="my-container">
             <div class="header-links">
-                @* <div class="menu-toggle" id="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div> *@
-                <ul class="links-group-one">
-                    <li>
-                        <a class="jobnest" asp-area="" asp-controller="Home" asp-action="Index">
-                            <span class="title-one">Job</span><span class="title-two">nest</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="Home" asp-action="Index">About Us</a>
-                    </li>
-                    <li>
-                        <a asp-area="" asp-controller="Home" asp-action="Index">Contact Us</a>
-                    </li>
-                    @if (User.IsInRole("Applicant"))
-                    {
+                <div>
+                    <a class="jobnest" asp-area="" asp-controller="Home" asp-action="Index">
+                        <span class="title-one">Job</span><span class="title-two">nest</span>
+                    </a>
+                </div>
+                <nav class="nav">
+                    <ul class="links-group-one">
                         <li>
-                            <a asp-area="" asp-controller="Application" asp-action="Jobs">Job Listings</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">About Us</a>
                         </li>
                         <li>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Index">My Applications</a>
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Contact Us</a>
                         </li>
+                        @if (User.IsInRole("Applicant"))
+                        {
+                            <li>
+                                <a asp-area="" asp-controller="Application" asp-action="Jobs">Job Listings</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Application" asp-action="Index">My Applications</a>
+                            </li>
 
-                    }
-                    else if (User.IsInRole("Employer"))
-                    {
-                        <li>
-                            <a asp-area="" asp-controller="Job" asp-action="Index">Manage Jobs</a>
-                        </li>
-                    }
-                </ul>
-                <partial name="_LoginPartial" />
+                        }
+                        else if (User.IsInRole("Employer"))
+                        {
+                            <li>
+                                <a asp-area="" asp-controller="Job" asp-action="Index">Manage Jobs</a>
+                            </li>
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </nav>
+                <span class="hamburger-menu  material-symbols-outlined">menu</span>                
             </div>
         </nav>
     </header>
@@ -102,11 +98,24 @@
         </div>
     </footer>
     <script src="~/js/site.js" asp-append-version="true"></script>
-@*     <script>
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            document.querySelector('.header-links').classList.toggle('menu-open');
+    <script>
+        const hamburgerMenu = document.querySelector(".hamburger-menu");
+        const nav = document.querySelector(".nav");
+
+        hamburgerMenu.addEventListener("click", () => {
+            nav.classList.toggle("active")
         });
-    </script> *@
+
+        window.onscroll = function (e) {
+            nav.classList.remove("active")
+        }
+
+        window.onclick = function (e) {
+            if (e.target !== nav && e.target !== hamburgerMenu) {
+                nav.classList.remove("active")
+            }
+        }
+    </script>
             @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
