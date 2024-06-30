@@ -38,7 +38,7 @@ p {
 }
 
 main {
-    min-height: calc(100vh - 80px - 307px);
+    min-height: calc(100vh - 80px - 260px);
 }
 
 /* Header Style */
