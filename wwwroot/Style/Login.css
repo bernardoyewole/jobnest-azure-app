@@ -1,4 +1,9 @@
-﻿.col-md-4 {
+﻿main {
+    display: grid;
+    place-items: center;
+}
+
+.col-md-4 {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
